@@ -1,299 +1,653 @@
-/* ============================================================
-   JAMES ALDO PARLINDUNGAN — BRUTALIST INTERACTIONS
-   Preloader cepat | Custom cursor magnetik | Scroll behaviors
-   ============================================================ */
-(function () {
-    "use strict";
+/* ============================================
+   RETRO FUTURISTIK INTERACTIVE JS
+   James Aldo Parlindungan - Portfolio
+   ============================================ */
 
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isFinePointer  = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-    function triggerPageTransition(url) {
-        const existing = document.getElementById("preloader");
-        if (existing) existing.remove();
-
-        const loader = document.createElement("div");
-        loader.id = "preloader";
-        loader.innerHTML = `
-            <div class="pre-logo">JAMES<span>.</span>ALDO</div>
-            <div class="pre-bar"><i id="pre-fill"></i></div>
-            <div class="pre-pct" id="pre-pct">0%</div>
-            <div class="pre-tag">LOADING_PORTFOLIO.EXE</div>`;
-        document.body.prepend(loader);
-
-        const preFill = loader.querySelector("#pre-fill");
-        const prePct  = loader.querySelector("#pre-pct");
-        let pct = 0;
-
-        const run = setInterval(() => {
-            pct = Math.min(100, pct + 12);
-            preFill.style.width = pct + "%";
-            prePct.textContent = pct + "%";
-            if (pct >= 100) {
-                clearInterval(run);
-                setTimeout(() => {
-                    window.location.href = url;
-                }, prefersReduced ? 0 : 250);
-            }
-        }, 60);
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // ==========================================
+  // 1. CUSTOM CURSOR WITH TRAIL EFFECT
+  // ==========================================
+  
+  const createCustomCursor = () => {
+    // Main cursor dot
+    const cursor = document.createElement('div');
+    cursor.id = 'custom-cursor';
+    cursor.style.cssText = `
+      width: 20px;
+      height: 20px;
+      border: 2px solid #05d9e8;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 20px rgba(5, 217, 232, 0.5);
+      mix-blend-mode: screen;
+    `;
+    document.body.appendChild(cursor);
+    
+    // Cursor trail
+    const trail = [];
+    for (let i = 0; i < 5; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'cursor-trail';
+      dot.style.cssText = `
+        width: ${10 - i * 2}px;
+        height: ${10 - i * 2}px;
+        background: rgba(255, 42, 109, ${0.5 - i * 0.1});
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: ${0.1 * (i + 1)}s;
+      `;
+      document.body.appendChild(dot);
+      trail.push(dot);
     }
+    
+    document.addEventListener('pointermove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
 
-    const backHomeLink = document.querySelector('header nav > a[href="../index.html"]');
-    if (backHomeLink) {
-        backHomeLink.addEventListener("click", (event) => {
-            event.preventDefault();
-            if (prefersReduced) {
-                window.location.href = "../index.html";
-                return;
-            }
-            triggerPageTransition("../index.html");
-        });
-    }
-
-    /* ---------------------------------------------------------
-       1. PRELOADER — singkat, brutal, langsung geser ke atas
-       --------------------------------------------------------- */
-    const preloader = document.createElement("div");
-    preloader.id = "preloader";
-    preloader.innerHTML = `
-        <div class="pre-logo">JAMES<span>.</span>ALDO</div>
-        <div class="pre-bar"><i id="pre-fill"></i></div>
-        <div class="pre-pct" id="pre-pct">0%</div>
-        <div class="pre-tag">LOADING_PORTFOLIO.EXE</div>`;
-    document.body.prepend(preloader);
-
-    const preFill = preloader.querySelector("#pre-fill");
-    const prePct  = preloader.querySelector("#pre-pct");
-    let pct = 0;
-    const startTime = performance.now();
-    const MIN_TIME = 850;   // durasi minimum (terasa "loading")
-    const MAX_TIME = 2200;  // batas maksimum jika assets lambat
-
-    function setPct(v) {
-        pct = Math.min(100, Math.round(v));
-        preFill.style.width = pct + "%";
-        prePct.textContent = pct + "%";
-    }
-
-    const tick = setInterval(() => {
-        // naik cepat di awal, melambat mendekati 90
-        setPct(pct + (pct < 70 ? 12 : pct < 90 ? 4 : 1.5));
-        if (pct >= 100) finish();
-    }, 60);
-
-    function finish() {
-        clearInterval(tick);
-        setPct(100);
-        const elapsed = performance.now() - startTime;
-        const wait = Math.max(0, MIN_TIME - elapsed);
-        setTimeout(() => {
-            preloader.classList.add("done");
-            document.body.classList.add("loaded");
-            preloader.addEventListener("transitionend", () => preloader.remove(), { once: true });
-            startHeroWords();
-        }, wait + 120);
-    }
-    // safety: paksa selesai jika terlalu lama
-    setTimeout(finish, MAX_TIME);
-    window.addEventListener("load", () => { if (pct < 100) setPct(95); });
-
-    /* ---------------------------------------------------------
-       2. CUSTOM CURSOR — dot + ring, membesar di elemen interaktif
-       --------------------------------------------------------- */
-    if (isFinePointer && !prefersReduced) {
-        const dot = document.createElement("div");
-        dot.className = "cursor-dot";
-        const ring = document.createElement("div");
-        ring.className = "cursor-ring";
-        ring.innerHTML = '<span class="cursor-label">LIHAT</span>';
-        document.body.append(dot, ring);
-
-        let mx = innerWidth / 2, my = innerHeight / 2;
-        let rx = mx, ry = my; // posisi ring (lerp)
-
-        window.addEventListener("mousemove", (e) => {
-            mx = e.clientX; my = e.clientY;
-            dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
-        }, { passive: true });
-
-        (function loop() {
-            rx += (mx - rx) * 0.16;   // ring mengejar dengan delay halus
-            ry += (my - ry) * 0.16;
-            ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
-            requestAnimationFrame(loop);
-        })();
-
-        // elemen yang bikin cursor MEMBESAR
-        const HOVER_SEL = "a, button, li, article, figure, h2, h3, #profil figcaption";
-        document.addEventListener("mouseover", (e) => {
-            const t = e.target.closest(HOVER_SEL);
-            if (!t) return;
-            ring.classList.add("is-hover");
-            // khusus area "lihat" (gambar profil / cards besar)
-            if (e.target.closest("#profil figure, #prestasi article")) {
-                ring.classList.add("is-view");
-            }
-        });
-        document.addEventListener("mouseout", (e) => {
-            if (!e.relatedTarget || !e.relatedTarget.closest(HOVER_SEL)) {
-                ring.classList.remove("is-hover", "is-view");
-            }
-        });
-
-        // efek magnet ringan pada CTA hero
-        document.querySelectorAll("#profil a, header nav > a").forEach((el) => {
-            el.addEventListener("mousemove", (e) => {
-                const r = el.getBoundingClientRect();
-                const dx = e.clientX - (r.left + r.width / 2);
-                const dy = e.clientY - (r.top + r.height / 2);
-                el.style.transform = `translate(${dx * 0.18}px, ${dy * 0.18}px)`;
-            });
-            el.addEventListener("mouseleave", () => { el.style.transform = ""; });
-        });
-    }
-
-    /* ---------------------------------------------------------
-       3. HERO — animasi kata per kata (dipanggil setelah preloader)
-       --------------------------------------------------------- */
-    const heroTitle = document.querySelector("#profil h1");
-    let wordsArmed = false;
-
-    function armHeroWords() {
-        if (!heroTitle || wordsArmed) return;
-        wordsArmed = true;
-        const words = heroTitle.textContent.trim().split(/\s+/);
-        heroTitle.innerHTML = words.map((w, i) =>
-            `<span class="word"><span style="animation-delay:${0.08 * i + 0.1}s">${w}</span></span>`
-        ).join(" ");
-    }
-
-    function startHeroWords() {
-        if (prefersReduced) return;
-        armHeroWords(); // animasi CSS langsung jalan begitu kelas .loaded
-    }
-    if (prefersReduced) armHeroWords();
-
-    /* ---------------------------------------------------------
-       4. SCROLL PROGRESS BAR + HEADER STATE (bukan fade!)
-       --------------------------------------------------------- */
-    const progress = document.createElement("div");
-    progress.id = "scroll-progress";
-    document.body.appendChild(progress);
-    const header = document.querySelector("header");
-
-    let ticking = false;
-    function onScroll() {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(() => {
-            const h = document.documentElement;
-            const max = h.scrollHeight - h.clientHeight;
-            progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
-            header.classList.toggle("scrolled", h.scrollTop > 10);
-            updateActiveNav();
-            ticking = false;
-        });
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    /* ---------------------------------------------------------
-       5. NAV AKTIF — highlight link sesuai section yang terlihat
-       --------------------------------------------------------- */
-    const navLinks = [...document.querySelectorAll("header nav ul li a")];
-    const sectionMap = new Map(
-        navLinks.map((a) => [a.getAttribute("href").slice(1), a])
-    );
-    const observed = [...sectionMap.keys()]
-        .map((id) => document.getElementById(id))
-        .filter(Boolean);
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach((en) => {
-            if (en.isIntersecting) {
-                navLinks.forEach((l) => l.classList.remove("active"));
-                const link = sectionMap.get(en.target.id);
-                if (link) link.classList.add("active");
-            }
-        });
-    }, { rootMargin: "-40% 0px -55% 0px" });
-    observed.forEach((s) => sectionObserver.observe(s));
-
-    function updateActiveNav() { /* dipegang observer; scroll hanya untuk bar & header */ }
-
-    /* ---------------------------------------------------------
-       6. REVEAL SAAT SCROLL — hanya SLIDE (tanpa fade opacity)
-       --------------------------------------------------------- */
-    if (!prefersReduced) {
-        const targets = document.querySelectorAll(
-            "section > p, section > h2, section > article, #profil figure, #profil > div"
-        );
-        targets.forEach((t) => t.classList.add("reveal"));
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach((en) => {
-                if (en.isIntersecting) {
-                    en.target.classList.add("in");
-                    io.unobserve(en.target);
-                }
-            });
-        }, { threshold: 0.12 });
-        targets.forEach((t) => io.observe(t));
-    }
-
-    /* ---------------------------------------------------------
-       7. MARQUEE — strip berjalan brutal (disisipkan setelah hero)
-       --------------------------------------------------------- */
-    const phrases = [
-        "DATA SCIENCE", "PYTHON", "SQL", "MACHINE LEARNING",
-        "PCA", "GPR", "DJANGO", "PANDAS", "NUMPY", "ANALISIS DATA", "★"
-    ];
-    const marquee = document.createElement("div");
-    marquee.className = "marquee";
-    marquee.setAttribute("aria-hidden", "true");
-    const seq = phrases.map((p) => `<span>${p}</span>`).join("");
-    marquee.innerHTML = `<div class="marquee-track">${seq}${seq}</div>`;
-    const hero = document.querySelector("#profil");
-    hero.insertAdjacentElement("afterend", marquee);
-
-    /* ---------------------------------------------------------
-       8. NOMOR SECTION OTOMATIS — isi data-index di tiap h2
-       --------------------------------------------------------- */
-    const sections = [...document.querySelectorAll("main section")];
-    sections.forEach((s, i) => {
-        const h2 = s.querySelector("h2");
-        if (h2) h2.setAttribute("data-index", "0" + (i + 1) + " /");
+      trail.forEach((dot) => {
+        dot.style.left = e.clientX + 'px';
+        dot.style.top = e.clientY + 'px';
+      });
     });
-
-    /* ---------------------------------------------------------
-       9. EASTER EGG — ketik "DATA" untuk mode chaos 🌈
-       --------------------------------------------------------- */
-    let buffer = "";
-    window.addEventListener("keydown", (e) => {
-        if (e.key.length !== 1) return;
-        buffer = (buffer + e.key.toUpperCase()).slice(-4);
-        if (buffer === "DATA") {
-            document.documentElement.style.setProperty("--acid", "#00e5ff");
-            document.documentElement.style.setProperty("--pink", "#c8ff00");
-            setTimeout(() => {
-                document.documentElement.style.setProperty("--acid", "#c8ff00");
-                document.documentElement.style.setProperty("--pink", "#ff2e88");
-            }, 2500);
+    
+    // Scale cursor on hover over links
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        cursor.style.borderColor = '#ff2a6d';
+        cursor.style.boxShadow = '0 0 30px rgba(255, 42, 109, 0.8)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursor.style.borderColor = '#05d9e8';
+        cursor.style.boxShadow = '0 0 20px rgba(5, 217, 232, 0.5)';
+      });
+    });
+  };
+  
+  createCustomCursor();
+  
+  // ==========================================
+  // 2. PARTICLE SYSTEM CANVAS
+  // ==========================================
+  
+  const createParticleSystem = () => {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'particle-canvas';
+    canvas.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    `;
+    document.body.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = 50;
+    
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = this.getRandomColor();
+        this.opacity = Math.random() * 0.5 + 0.2;
+        this.pulse = Math.random() * Math.PI * 2;
+      }
+      
+      getRandomColor() {
+        const colors = ['#ff2a6d', '#05d9e8', '#a855f7', '#f9f002', '#00ff9f'];
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
+      
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.pulse += 0.02;
+        
+        if (this.x < 0 || this.x > canvas.width || 
+            this.y < 0 || this.y > canvas.height) {
+          this.reset();
         }
+      }
+      
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.opacity * (0.5 + Math.sin(this.pulse) * 0.5);
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+    
+    // Connect nearby particles with lines
+    const connectParticles = () => {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 100) {
+            ctx.save();
+            ctx.globalAlpha = (1 - distance / 100) * 0.2;
+            ctx.strokeStyle = '#05d9e8';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+            ctx.restore();
+          }
+        }
+      }
+    };
+    
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      
+      connectParticles();
+      requestAnimationFrame(animate);
+    };
+    
+    animate();
+    
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     });
-
-    /* ---------------------------------------------------------
-       10. SMOOTH ANCHOR — offset rapi ke sticky nav
-       --------------------------------------------------------- */
-    document.querySelectorAll('a[href^="#"]').forEach((a) => {
-        a.addEventListener("click", (e) => {
-            const id = a.getAttribute("href");
-            if (id.length < 2) return;
-            const target = document.querySelector(id);
-            if (!target) return;
-            e.preventDefault();
-            const top = target.getBoundingClientRect().top + window.scrollY - 84;
-            window.scrollTo({ top, behavior: prefersReduced ? "auto" : "smooth" });
-        });
+  };
+  
+  createParticleSystem();
+  
+  // ==========================================
+  // 3. TYPING EFFECT FOR HERO SECTION
+  // ==========================================
+  
+  const createTypingEffect = () => {
+    const heroText = document.querySelector('#profil > div > p:first-child');
+    if (!heroText) return;
+    
+    const originalText = heroText.textContent;
+    heroText.textContent = '';
+    heroText.style.borderRight = '2px solid #00ff9f';
+    heroText.style.paddingRight = '5px';
+    
+    let charIndex = 0;
+    
+    const type = () => {
+      if (charIndex < originalText.length) {
+        heroText.textContent += originalText[charIndex];
+        charIndex++;
+        setTimeout(type, 100);
+      } else {
+        // Blinking cursor after typing
+        setInterval(() => {
+          heroText.style.borderRight = heroText.style.borderRight === 'none' 
+            ? '2px solid #00ff9f' 
+            : 'none';
+        }, 500);
+      }
+    };
+    
+    // Start typing after slight delay
+    setTimeout(type, 500);
+  };
+  
+  createTypingEffect();
+  
+  // ==========================================
+  // 4. SCROLL REVEAL ANIMATIONS
+  // ==========================================
+  
+  const createScrollReveal = () => {
+    const sections = document.querySelectorAll('section');
+    
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          
+          // Add stagger animation to children
+          const children = entry.target.querySelectorAll('article, .focus-grid article');
+          children.forEach((child, index) => {
+            setTimeout(() => {
+              child.style.opacity = '1';
+              child.style.transform = 'translateY(0)';
+            }, index * 100);
+          });
+        }
+      });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(30px)';
+      section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(section);
+      
+      const children = section.querySelectorAll('article, .focus-grid article');
+      children.forEach(child => {
+        child.style.opacity = '0';
+        child.style.transform = 'translateY(20px)';
+        child.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      });
     });
+  };
+  
+  createScrollReveal();
+  
+  // ==========================================
+  // 5. PARALLAX EFFECT ON PROFILE IMAGE
+  // ==========================================
+  
+  const createParallax = () => {
+    const profileImg = document.querySelector('#profil img');
+    const profileSection = document.querySelector('#profil');
+    
+    if (!profileImg || !profileSection) return;
+    
+    profileSection.addEventListener('mousemove', (e) => {
+      const rect = profileSection.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      const moveX = x * 0.05;
+      const moveY = y * 0.05;
+      
+      profileImg.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+    
+    profileSection.addEventListener('mouseleave', () => {
+      profileImg.style.transform = 'translate(0, 0)';
+      profileImg.style.transition = 'transform 0.5s ease';
+    });
+  };
+  
+  createParallax();
+  
+  // ==========================================
+  // 6. MAGNETIC EFFECT ON BUTTONS
+  // ==========================================
+  
+  const createMagneticButtons = () => {
+    const buttons = document.querySelectorAll('#profil a, nav a');
+    
+    buttons.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      });
+      
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0)';
+        btn.style.transition = 'transform 0.3s ease';
+      });
+    });
+  };
+  
+  createMagneticButtons();
+  
+  // ==========================================
+  // 7. GLITCH TEXT EFFECT ON HOVER
+  // ==========================================
+  
+  const createGlitchEffect = () => {
+    const title = document.querySelector('#profil h1');
+    if (!title) return;
+    
+    const originalText = title.textContent;
+    const glitchChars = '!<>-_\\/[]{}—=+*^?#________';
+    
+    title.addEventListener('mouseenter', () => {
+      let iteration = 0;
+      const interval = setInterval(() => {
+        title.textContent = originalText
+          .split('')
+          .map((char, index) => {
+            if (index < iteration) {
+              return originalText[index];
+            }
+            return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+          })
+          .join('');
+        
+        if (iteration >= originalText.length) {
+          clearInterval(interval);
+        }
+        
+        iteration += 1/3;
+      }, 30);
+    });
+  };
+  
+  createGlitchEffect();
+  
+  // ==========================================
+  // 8. NEON FLICKER RANDOMIZER
+  // ==========================================
+  
+  const createNeonFlicker = () => {
+    const headings = document.querySelectorAll('h2');
+    
+    headings.forEach(heading => {
+      setInterval(() => {
+        if (Math.random() > 0.95) {
+          heading.style.opacity = '0.5';
+          setTimeout(() => {
+            heading.style.opacity = '1';
+          }, 50);
+          setTimeout(() => {
+            heading.style.opacity = '0.7';
+          }, 100);
+          setTimeout(() => {
+            heading.style.opacity = '1';
+          }, 150);
+        }
+      }, 3000);
+    });
+  };
+  
+  createNeonFlicker();
+  
+  // ==========================================
+  // 9. SMOOTH SCROLL WITH PROGRESS BAR
+  // ==========================================
+  
+  const createScrollProgress = () => {
+    const progressBar = document.createElement('div');
+    progressBar.id = 'scroll-progress';
+    progressBar.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #ff2a6d, #05d9e8, #a855f7);
+      z-index: 10001;
+      transition: width 0.1s ease;
+      box-shadow: 0 0 10px rgba(5, 217, 232, 0.5);
+    `;
+    document.body.appendChild(progressBar);
+    
+    window.addEventListener('scroll', () => {
+      const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = (window.scrollY / windowHeight) * 100;
+      progressBar.style.width = scrolled + '%';
+    });
+  };
+  
+  createScrollProgress();
 
-    onScroll();
-})();
+  const backToTopLink = document.querySelector('footer a[href="#beranda"]');
+  backToTopLink?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  
+  // ==========================================
+  // 10. INTERACTIVE CARD TILT EFFECT
+  // ==========================================
+  
+  const createTiltEffect = () => {
+    const cards = document.querySelectorAll('.focus-grid article, #keahlian article, #prestasi article');
+    
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+        card.style.transition = 'transform 0.1s';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        card.style.transition = 'transform 0.5s ease';
+      });
+    });
+  };
+  
+  createTiltEffect();
+  
+  // ==========================================
+  // 11. AUDIO-VISUAL FEEDBACK (OPTIONAL)
+  // ==========================================
+  
+  const createSoundEffect = () => {
+    // Create audio context for hover sounds
+    let audioContext;
+    
+    try {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    } catch (e) {
+      return; // Audio not supported
+    }
+    
+    const playHoverSound = () => {
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+      
+      gainNode.gain.setValueAtTime(0.05, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.1);
+    };
+    
+    // Add sound to nav links
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('mouseenter', playHoverSound);
+    });
+  };
+  
+  // Uncomment to enable sound effects
+  // createSoundEffect();
+  
+  // ==========================================
+  // 12. DYNAMIC TIME-BASED GREETING
+  // ==========================================
+  
+  const createDynamicGreeting = () => {
+    const hour = new Date().getHours();
+    let greeting = '';
+    let emoji = '';
+    
+    if (hour < 12) {
+      greeting = 'SELAMAT PAGI';
+      emoji = '🌅';
+    } else if (hour < 17) {
+      greeting = 'SELAMAT SIANG';
+      emoji = '☀️';
+    } else if (hour < 20) {
+      greeting = 'SELAMAT SORE';
+      emoji = '🌆';
+    } else {
+      greeting = 'SELAMAT MALAM';
+      emoji = '🌙';
+    }
+    
+    console.log(`${emoji} ${greeting}! Welcome to the retro future.`);
+    
+    // Optional: Add to footer
+    const footer = document.querySelector('footer');
+    if (footer) {
+      const greetingEl = document.createElement('p');
+      const timeEl = document.createElement('span');
+      greetingEl.append(`${emoji} ${greeting} | SYSTEM TIME: `, timeEl);
+      greetingEl.style.fontSize = '0.8rem';
+      greetingEl.style.opacity = '0.6';
+      footer.insertBefore(greetingEl, footer.firstChild);
+
+      const updateTime = () => {
+        timeEl.textContent = new Date().toLocaleTimeString('id-ID');
+      };
+
+      updateTime();
+      setInterval(updateTime, 1000);
+    }
+  };
+  
+  createDynamicGreeting();
+  
+  // ==========================================
+  // 13. MATRIX RAIN EFFECT (TOGGLEABLE)
+  // ==========================================
+  
+  const createMatrixRain = () => {
+    // Press 'M' to toggle matrix rain
+    let matrixActive = false;
+    let matrixCanvas, matrixCtx;
+    
+    const initMatrix = () => {
+      matrixCanvas = document.createElement('canvas');
+      matrixCanvas.id = 'matrix-canvas';
+      matrixCanvas.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.1;
+        pointer-events: none;
+      `;
+      document.body.appendChild(matrixCanvas);
+      
+      matrixCtx = matrixCanvas.getContext('2d');
+      matrixCanvas.width = window.innerWidth;
+      matrixCanvas.height = window.innerHeight;
+      
+      const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノ0123456789';
+      const charArray = chars.split('');
+      const fontSize = 14;
+      const columns = matrixCanvas.width / fontSize;
+      const drops = [];
+      
+      for (let i = 0; i < columns; i++) {
+        drops[i] = 1;
+      }
+      
+      const drawMatrix = () => {
+        if (!matrixActive) return;
+        
+        matrixCtx.fillStyle = 'rgba(10, 10, 15, 0.05)';
+        matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+        
+        matrixCtx.fillStyle = '#00ff9f';
+        matrixCtx.font = fontSize + 'px monospace';
+        
+        for (let i = 0; i < drops.length; i++) {
+          const text = charArray[Math.floor(Math.random() * charArray.length)];
+          matrixCtx.fillText(text, i * fontSize, drops[i] * fontSize);
+          
+          if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+        
+        requestAnimationFrame(drawMatrix);
+      };
+      
+      drawMatrix();
+    };
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key.toLowerCase() === 'm') {
+        if (!matrixCanvas) {
+          initMatrix();
+        }
+        matrixActive = !matrixActive;
+        matrixCanvas.style.display = matrixActive ? 'block' : 'none';
+        if (matrixActive) {
+          const event = new Event('matrixStart');
+          document.dispatchEvent(event);
+        }
+      }
+    });
+  };
+  
+  createMatrixRain();
+  
+  // ==========================================
+  // 14. CONSOLE EASTER EGG
+  // ==========================================
+  
+  console.log(`
+    ██████╗ ███████╗████████╗██████╗  ██████╗ 
+    ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗
+    ██████╔╝█████╗     ██║   ██████╔╝██║   ██║
+    ██╔══██╗██╔══╝     ██║   ██╔══██╗██║   ██║
+    ██║  ██║███████╗   ██║   ██║  ██║╚██████╔╝
+    ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ 
+                                             
+    ███████╗██╗   ██╗████████╗██╗   ██╗██████╗ 
+    ██╔════╝██║   ██║╚══██╔══╝██║   ██║██╔══██╗
+    █████╗  ██║   ██║   ██║   ██║   ██║██████╔╝
+    ██╔══╝  ██║   ██║   ██║   ██║   ██║██╔═══╝ 
+    ██║     ╚██████╔╝   ██║   ╚██████╔╝██║     
+    ╚═╝      ╚═════╝    ╚═╝    ╚═════╝ ╚═╝     
+                                             
+    🚀 Welcome to the Retro Future, James!
+    💡 Press 'M' for Matrix mode
+    🎮 Try hovering elements for surprises
+  `);
+  
+});

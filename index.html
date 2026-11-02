@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -7,31 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="author" content="Kimi Thora Refolino">
-    <meta name="description" content="Web Biografis merupakan proyek pembelajaran mata kuliah Pemrograman untuk mempelajari dasar pengembangan web menggunakan HTML5, CSS, dan JavaScript dengan pendekatan desain Brutalism.">
-    <meta name="keywords" content="Web Biografis, Pemrograman, HTML5, CSS, JavaScript, Brutalism, Data Science, ULBI">
+    <meta name="description"
+        content="Website biografi Kimi Thora Refolino dan James Aldo Parlindungan, proyek pembelajaran Pemrograman I menggunakan HTML5, CSS3, dan JavaScript.">
 
-    <title>Web Biografis — Digital Identity Project</title>
+    <title>Web Biografi — Pemrograman I</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style/global.css">
-
 </head>
 
 <body>
-    <header id="header">
 
-        <nav aria-label="Navigasi utama">
+    <!-- ==================================================
+         NAVIGASI UTAMA
+    =================================================== -->
 
-            <a href="#beranda" class="brand">
-                WEB<span>BIOGRAFIS.</span>
+    <header id="beranda" class="site-header">
+
+        <nav class="navbar" aria-label="Navigasi utama">
+
+            <a href="#beranda" class="logo">
+                <span class="logo-symbol">W/B</span>
+                <span class="logo-text">WEB BIOGRAFI</span>
             </a>
 
-            <ul class="nav-menu">
+            <button
+                type="button"
+                class="menu-toggle"
+                id="menu-toggle"
+                aria-label="Buka navigasi"
+                aria-expanded="false"
+                aria-controls="nav-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="nav-menu">
                 <li>
                     <a href="#tentang">Tentang</a>
-                </li>
-
-                <li>
-                    <a href="#pembelajaran">Pembelajaran</a>
                 </li>
 
                 <li>
@@ -39,21 +56,11 @@
                 </li>
 
                 <li>
-                    <a href="#desain">Desain</a>
+                    <a href="#biografi">Biografi</a>
                 </li>
 
                 <li>
-                    <a href="#pengaturan">Pengaturan</a>
-                </li>
-
-                <li class="nav-dropdown">
-                    <details>
-                        <summary aria-controls="profile-menu" aria-expanded="false">Profil</summary>
-                        <ul class="nav-dropdown-menu" id="profile-menu">
-                            <li><a href="template/kimi.html">Kimi</a></li>
-                            <li><a href="template/james.html">James</a></li>
-                        </ul>
-                    </details>
+                    <a href="#preferensi">Preferensi</a>
                 </li>
             </ul>
 
@@ -63,342 +70,444 @@
 
 
     <main>
-        <section id="beranda" class="hero">
+
+        <!-- ==================================================
+             HERO / PEMBUKA
+        =================================================== -->
+
+        <section class="hero section" id="hero">
+
+            <div class="hero-background-decoration" aria-hidden="true">
+                <span class="decoration decoration-one">WEB</span>
+                <span class="decoration decoration-two">01</span>
+                <span class="decoration decoration-three">HTML</span>
+            </div>
 
             <div class="hero-content">
 
-                <p class="eyebrow">
-                    PROYEK MATA KULIAH PEMROGRAMAN
+                <p class="section-label">
+                    PEMROGRAMAN I / PROYEK WEBSITE
                 </p>
 
                 <h1>
-                    KNOW US.<br>
-                    <span>BEYOND</span><br>
-                    THE SCREEN.
+                    TWO PEOPLE.<br>
+                    <span>ONE WEB.</span><br>
+                    DIFFERENT STORIES.
                 </h1>
 
                 <p class="hero-description">
-                    Sebuah ruang digital untuk mengenal identitas,
-                    perjalanan, minat, dan pemikiran melalui
-                    website biografis yang dibangun dari dasar
-                    pengembangan web.
+                    Sebuah ruang digital untuk mengenal dua individu melalui
+                    biografi, perjalanan, pengalaman, dan identitas visual
+                    yang dikembangkan menggunakan teknologi web dasar.
                 </p>
 
                 <div class="hero-actions">
 
-                    <a href="#tentang" class="button-primary">
-                        JELAJAHI WEBSITE
+                    <a href="#biografi" class="button button-primary">
+                        Jelajahi Biografi
                     </a>
 
-                    <a href="#pembelajaran" class="button-secondary">
-                        TENTANG PROYEK
+                    <a href="#tentang" class="button button-secondary">
+                        Tentang Proyek
+                    </a>
+
+                </div>
+
+                <div class="hero-caption">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                </div>
+
+            </div>
+
+            <aside class="hero-side-note">
+                <p>ACADEMIC PROJECT</p>
+                <p>2026</p>
+                <p>DESIGNED TO EXPLORE</p>
+            </aside>
+
+        </section>
+
+
+        <!-- ==================================================
+             01. TENTANG PEMROGRAMAN I
+        =================================================== -->
+
+        <section class="about-section section" id="tentang">
+
+            <div class="section-heading">
+
+                <p class="section-label">01 / THE FOUNDATION</p>
+
+                <h2>
+                    Mengenal<br>
+                    <span>Pemrograman I.</span>
+                </h2>
+
+            </div>
+
+            <div class="about-grid">
+
+                <article class="about-card about-card-main">
+
+                    <span class="card-index">01.01</span>
+
+                    <h3>Apa yang dipelajari?</h3>
+
+                    <p>
+                        Pemrograman I merupakan mata kuliah yang memperkenalkan
+                        dasar-dasar pengembangan perangkat lunak, termasuk
+                        pengenalan teknologi web dan penerapannya dalam
+                        membangun sebuah website.
+                    </p>
+
+                    <p>
+                        Melalui pembelajaran ini, mahasiswa mengenal struktur
+                        halaman web, pengaturan tampilan, serta penambahan
+                        interaksi agar website menjadi lebih informatif dan
+                        mudah digunakan.
+                    </p>
+
+                </article>
+
+
+                <article class="about-card about-card-accent">
+
+                    <span class="card-index">01.02</span>
+
+                    <h3>From Code to Creation.</h3>
+
+                    <p>
+                        Website bukan sekadar kumpulan teks dan gambar.
+                        Website merupakan hasil perpaduan struktur,
+                        desain, dan interaksi yang dirancang untuk
+                        menyampaikan informasi secara efektif.
+                    </p>
+
+                    <div class="about-highlight">
+                        <span>STRUCTURE</span>
+                        <span>+</span>
+                        <span>DESIGN</span>
+                        <span>+</span>
+                        <span>INTERACTION</span>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             02. TENTANG WEB BIOGRAFI
+        =================================================== -->
+
+        <section class="project-section section" id="proyek">
+
+            <div class="section-heading">
+
+                <p class="section-label">02 / THE PROJECT</p>
+
+                <h2>
+                    Web Biografi:<br>
+                    <span>A Living Profile.</span>
+                </h2>
+
+            </div>
+
+            <div class="project-layout">
+
+                <div class="project-visual" aria-hidden="true">
+
+                    <div class="project-paper project-paper-one">
+                        <span>IDENTITY</span>
+                        <strong>01</strong>
+                    </div>
+
+                    <div class="project-paper project-paper-two">
+                        <span>STORY</span>
+                        <strong>02</strong>
+                    </div>
+
+                    <div class="project-center-mark">
+                        W/B
+                    </div>
+
+                </div>
+
+                <div class="project-description">
+
+                    <h3>Lebih dari sekadar halaman profil.</h3>
+
+                    <p>
+                        Web Biografi merupakan salah satu tugas dalam mata
+                        kuliah Pemrograman I yang bertujuan memperkenalkan
+                        dasar-dasar pengembangan website melalui pembuatan
+                        halaman biografi.
+                    </p>
+
+                    <p>
+                        Proyek ini menjadi media pembelajaran untuk memahami
+                        bagaimana HTML membentuk struktur halaman, CSS
+                        mengatur tampilan visual, dan JavaScript memberikan
+                        interaksi kepada pengguna.
+                    </p>
+
+                    <p>
+                        Website ini menampilkan biografi Kimi Thora Refolino
+                        dan James Aldo Parlindungan dengan pendekatan desain
+                        yang berbeda, tetapi tetap berada dalam satu kesatuan
+                        website.
+                    </p>
+
+                    <a href="#biografi" class="text-link">
+                        Kenali para pemilik biografi →
                     </a>
 
                 </div>
 
             </div>
 
-
-            <div class="hero-visual">
-
-                <div class="visual-label">
-                    DIGITAL IDENTITY / 001
-                </div>
-
-                <div class="visual-box">
-
-                    <span class="visual-symbol">W/B.</span>
-
-                    <p>
-                        A DIGITAL SPACE
-                        FOR PERSONAL STORIES.
-                    </p>
-
-                    <span class="visual-index">
-                        EST. 2026
-                    </span>
-
-                </div>
-
-                <p class="visual-caption">
-                    DESIGNED WITH PURPOSE.
-                    BUILT WITH CODE.
-                </p>
-
-            </div>
-
         </section>
 
 
         <!-- ==================================================
-             2. TENTANG WEBSITE
-        ================================================== -->
+             03. TEKNOLOGI YANG DIGUNAKAN
+        =================================================== -->
 
-        <section id="tentang" class="section about-section">
-
-            <div class="section-heading">
-
-                <p class="eyebrow">
-                    01 / OVERVIEW
-                </p>
-
-                <h2>
-                    APA ITU<br>
-                    WEB BIOGRAFIS?
-                </h2>
-
-            </div>
-
-
-            <div class="about-content">
-
-                <p class="about-lead">
-                    Bukan sekadar halaman web, melainkan
-                    representasi identitas dalam bentuk digital.
-                </p>
-
-                <p>
-                    Web Biografis merupakan website yang dirancang
-                    untuk memperkenalkan identitas, latar belakang
-                    pendidikan, pengalaman, minat, keahlian, serta
-                    perjalanan akademik seseorang melalui media
-                    digital.
-                </p>
-
-                <p>
-                    Website ini dikembangkan sebagai bagian dari
-                    pembelajaran mata kuliah Pemrograman, dengan
-                    menerapkan konsep dasar pengembangan web,
-                    penyusunan struktur dokumen, pengaturan tampilan,
-                    serta interaksi antara pengguna dan halaman web.
-                </p>
-
-                <p>
-                    Selain menjadi media pengenalan diri, proyek ini
-                    juga menjadi sarana untuk memahami bagaimana
-                    teknologi web dapat digunakan dalam membangun
-                    identitas digital yang informatif, terstruktur,
-                    dan mudah diakses.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==================================================
-             3. LATAR BELAKANG PEMBELAJARAN
-        ================================================== -->
-
-        <section id="pembelajaran" class="section learning-section">
+        <section class="technology-section section" id="teknologi">
 
             <div class="section-heading">
 
-                <p class="eyebrow">
-                    02 / LEARNING OBJECTIVES
-                </p>
+                <p class="section-label">03 / THE TECHNOLOGY</p>
 
                 <h2>
-                    BELAJAR DARI<br>
-                    DASAR.
+                    Three tools.<br>
+                    <span>One experience.</span>
                 </h2>
 
-            </div>
-
-
-            <div class="learning-intro">
-
-                <p>
-                    Mata kuliah Pemrograman menjadi landasan untuk
-                    memahami logika, struktur, dan proses pembangunan
-                    sebuah aplikasi. Dalam proyek ini, konsep tersebut
-                    diterapkan melalui pembuatan website menggunakan
-                    teknologi pengembangan web dasar.
-                </p>
-
-                <p>
-                    Proses pembelajaran tidak hanya berfokus pada
-                    penulisan kode, tetapi juga pada bagaimana
-                    menyusun informasi, merancang antarmuka,
-                    dan memberikan pengalaman yang baik kepada pengguna.
+                <p class="section-introduction">
+                    Tiga teknologi dasar yang bekerja bersama dalam
+                    membangun struktur, visual, dan interaksi website.
                 </p>
 
             </div>
 
 
-            <div class="learning-grid">
+            <div class="technology-grid">
 
-                <article class="learning-card">
+                <!-- HTML5 -->
 
-                    <span class="card-number">01</span>
+                <article class="technology-card technology-html">
 
-                    <h3>STRUKTUR</h3>
+                    <div class="technology-card-header">
 
-                    <p>
-                        Memahami struktur dokumen HTML, penggunaan
-                        elemen semantik, hierarki konten, dan
-                        penyusunan halaman web yang terorganisasi.
-                    </p>
+                        <span class="technology-number">01</span>
 
-                </article>
+                        <figure class="technology-logo">
 
+                            <img
+                                src="assets/html-5.svg"
+                                alt="Logo HTML5"
+                                loading="lazy">
 
-                <article class="learning-card">
+                        </figure>
 
-                    <span class="card-number">02</span>
-
-                    <h3>PRESENTASI</h3>
-
-                    <p>
-                        Memahami bagaimana CSS mengatur warna,
-                        tipografi, tata letak, jarak, responsivitas,
-                        dan identitas visual sebuah website.
-                    </p>
-
-                </article>
-
-
-                <article class="learning-card">
-
-                    <span class="card-number">03</span>
-
-                    <h3>INTERAKSI</h3>
-
-                    <p>
-                        Mengenal JavaScript untuk menambahkan
-                        interaktivitas, menangani tindakan pengguna,
-                        dan mengelola perubahan tampilan halaman.
-                    </p>
-
-                </article>
-
-
-                <article class="learning-card">
-
-                    <span class="card-number">04</span>
-
-                    <h3>INTEGRASI</h3>
-
-                    <p>
-                        Menggabungkan HTML, CSS, dan JavaScript
-                        menjadi satu website yang memiliki struktur
-                        jelas, tampilan konsisten, dan fungsi yang
-                        saling terhubung.
-                    </p>
-
-                </article>
-
-            </div>
-
-
-            <div class="learning-note">
-
-                <p>
-                    <strong>Tujuan proyek:</strong>
-                    menerapkan dasar pengembangan web melalui
-                    produk nyata sekaligus mengembangkan pemahaman
-                    tentang desain antarmuka dan pengalaman pengguna.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==================================================
-             4. TEKNOLOGI YANG DIGUNAKAN
-        ================================================== -->
-
-        <section id="teknologi" class="section technology-section">
-
-            <div class="section-heading">
-
-                <p class="eyebrow">
-                    03 / TECHNOLOGY STACK
-                </p>
-
-                <h2>
-                    THREE TOOLS.<br>
-                    ONE WEBSITE.
-                </h2>
-
-            </div>
-
-
-            <p class="technology-intro">
-                Website ini menggunakan tiga teknologi utama
-                yang memiliki fungsi berbeda, tetapi bekerja
-                bersama dalam proses pengembangan halaman web.
-            </p>
-
-
-            <div class="technology-list">
-
-                <article class="technology-card html-card">
-
-                    <div class="technology-top">
-                        <span class="technology-index">01</span>
-                        <span class="technology-label">STRUCTURE</span>
                     </div>
 
                     <h3>HTML5</h3>
 
-                    <p>
-                        HyperText Markup Language digunakan untuk
-                        membangun struktur dan menyusun konten
-                        website, mulai dari judul, paragraf,
-                        navigasi, hingga bagian biografi.
+                    <p class="technology-role">
+                        THE STRUCTURE
                     </p>
 
-                    <p class="technology-role">
-                        PERAN: STRUKTUR KONTEN
+                    <p>
+                        Fondasi yang digunakan untuk menyusun struktur
+                        halaman, seperti judul, paragraf, gambar, tautan,
+                        formulir, dan berbagai elemen konten lainnya.
                     </p>
+
+                    <details class="technology-details">
+
+                        <summary>
+                            Pelajari HTML5
+                            <span class="dropdown-icon" aria-hidden="true">+</span>
+                        </summary>
+
+                        <div class="technology-detail-content">
+
+                            <h4>Apa itu HTML5?</h4>
+
+                            <p>
+                                HTML (HyperText Markup Language) adalah
+                                bahasa markup yang digunakan untuk
+                                menyusun dan memberikan makna pada konten
+                                halaman web.
+                            </p>
+
+                            <p>
+                                Dalam proyek ini, HTML digunakan untuk
+                                membangun bagian navigasi, pengenalan
+                                mata kuliah, penjelasan teknologi,
+                                kartu biografi, dan pengaturan preferensi.
+                            </p>
+
+                            <h4>Contoh penerapan</h4>
+
+                            <ul>
+                                <li>Heading dan paragraf.</li>
+                                <li>Gambar dan hyperlink.</li>
+                                <li>Elemen semantik seperti header, main, section, dan footer.</li>
+                                <li>Formulir dan elemen details serta summary.</li>
+                            </ul>
+
+                        </div>
+
+                    </details>
 
                 </article>
 
 
-                <article class="technology-card css-card">
+                <!-- CSS3 -->
 
-                    <div class="technology-top">
-                        <span class="technology-index">02</span>
-                        <span class="technology-label">PRESENTATION</span>
+                <article class="technology-card technology-css">
+
+                    <div class="technology-card-header">
+
+                        <span class="technology-number">02</span>
+
+                        <figure class="technology-logo">
+
+                            <img
+                                src="assets/css.svg"
+                                alt="Logo CSS3"
+                                loading="lazy">
+
+                        </figure>
+
                     </div>
 
-                    <h3>CSS</h3>
-
-                    <p>
-                        Cascading Style Sheets digunakan untuk
-                        mengatur tampilan visual, palet warna,
-                        tipografi, tata letak, responsivitas,
-                        dan karakter desain Brutalism.
-                    </p>
+                    <h3>CSS3</h3>
 
                     <p class="technology-role">
-                        PERAN: TAMPILAN VISUAL
+                        THE VISUAL
                     </p>
+
+                    <p>
+                        Teknologi yang mengatur presentasi visual website,
+                        mulai dari warna, tipografi, tata letak, jarak,
+                        dekorasi, hingga responsivitas tampilan.
+                    </p>
+
+                    <details class="technology-details">
+
+                        <summary>
+                            Pelajari CSS3
+                            <span class="dropdown-icon" aria-hidden="true">+</span>
+                        </summary>
+
+                        <div class="technology-detail-content">
+
+                            <h4>Apa itu CSS?</h4>
+
+                            <p>
+                                CSS (Cascading Style Sheets) digunakan
+                                untuk mengatur bagaimana elemen HTML
+                                ditampilkan pada layar.
+                            </p>
+
+                            <p>
+                                Pada proyek ini, CSS menerapkan pendekatan
+                                Simple Collage Art sebagai gaya utama,
+                                sekaligus memberikan identitas visual
+                                khusus pada masing-masing halaman biografi.
+                            </p>
+
+                            <h4>Contoh penerapan</h4>
+
+                            <ul>
+                                <li>Warna, font, dan tipografi.</li>
+                                <li>Flexbox dan CSS Grid.</li>
+                                <li>Responsive layout.</li>
+                                <li>Transisi, animasi, dan efek visual.</li>
+                            </ul>
+
+                        </div>
+
+                    </details>
 
                 </article>
 
 
-                <article class="technology-card js-card">
+                <!-- JAVASCRIPT -->
 
-                    <div class="technology-top">
-                        <span class="technology-index">03</span>
-                        <span class="technology-label">INTERACTION</span>
+                <article class="technology-card technology-js">
+
+                    <div class="technology-card-header">
+
+                        <span class="technology-number">03</span>
+
+                        <figure class="technology-logo">
+
+                            <img
+                                src="assets/javascript.svg"
+                                alt="Logo JavaScript"
+                                loading="lazy">
+
+                        </figure>
+
                     </div>
 
                     <h3>JavaScript</h3>
 
-                    <p>
-                        JavaScript digunakan untuk mengembangkan
-                        fitur interaktif, seperti pengaturan tema,
-                        perubahan ukuran teks, dan penyimpanan
-                        preferensi tampilan pengguna.
+                    <p class="technology-role">
+                        THE INTERACTION
                     </p>
 
-                    <p class="technology-role">
-                        PERAN: INTERAKTIVITAS
+                    <p>
+                        Teknologi yang memungkinkan website merespons
+                        tindakan pengguna, mengubah elemen halaman,
+                        serta menjalankan fitur interaktif.
                     </p>
+
+                    <details class="technology-details">
+
+                        <summary>
+                            Pelajari JavaScript
+                            <span class="dropdown-icon" aria-hidden="true">+</span>
+                        </summary>
+
+                        <div class="technology-detail-content">
+
+                            <h4>Apa itu JavaScript?</h4>
+
+                            <p>
+                                JavaScript adalah bahasa pemrograman yang
+                                dapat digunakan untuk menambahkan perilaku
+                                dinamis dan interaktif pada halaman web.
+                            </p>
+
+                            <p>
+                                Dalam proyek ini, JavaScript direncanakan
+                                untuk mengatur navigasi responsif, interaksi
+                                komponen, preferensi tampilan, serta
+                                pengaturan animasi.
+                            </p>
+
+                            <h4>Contoh penerapan</h4>
+
+                            <ul>
+                                <li>Menu navigasi responsif.</li>
+                                <li>Carousel atau slider konten.</li>
+                                <li>Pengaturan tema dan ukuran teks.</li>
+                                <li>Pengelolaan preferensi pengguna.</li>
+                            </ul>
+
+                        </div>
+
+                    </details>
 
                 </article>
 
@@ -407,11 +516,14 @@
 
             <div class="technology-note">
 
+                <span class="note-symbol" aria-hidden="true">i</span>
+
                 <p>
-                    Ketiga teknologi tersebut memiliki fungsi
-                    yang saling melengkapi. HTML membentuk struktur,
-                    CSS mengatur presentasi, sedangkan JavaScript
-                    memungkinkan perilaku interaktif.
+                    <strong>Catatan:</strong>
+                    HTML, CSS, dan JavaScript memiliki fungsi yang berbeda,
+                    tetapi saling melengkapi. HTML menyusun konten, CSS
+                    mengatur tampilannya, sedangkan JavaScript mengatur
+                    perilaku interaktif yang diperlukan.
                 </p>
 
             </div>
@@ -420,221 +532,218 @@
 
 
         <!-- ==================================================
-             5. KONSEP DESAIN BRUTALISM
-        ================================================== -->
+             04. ORANG-ORANG DI BALIK BIOGRAFI
+        =================================================== -->
 
-        <section id="desain" class="section design-section">
+        <section class="biography-section section" id="biografi">
 
             <div class="section-heading">
 
-                <p class="eyebrow">
-                    04 / VISUAL IDENTITY
-                </p>
+                <p class="section-label">04 / THE PEOPLE</p>
 
                 <h2>
-                    BRUTALISM.<br>
-                    BOLD BY DESIGN.
+                    Two identities.<br>
+                    <span>Two visual worlds.</span>
                 </h2>
+
+                <p class="section-introduction">
+                    Dua individu dengan cerita, pengalaman, dan pendekatan
+                    desain yang berbeda dalam satu proyek website biografi.
+                </p>
 
             </div>
 
 
-            <div class="design-content">
+            <!-- Kartu biografi dibuat berdampingan -->
 
-                <div class="design-description">
-
-                    <h3>Berani. Kontras. Tidak Biasa.</h3>
-
-                    <p>
-                        Brutalism merupakan pendekatan desain yang
-                        menonjolkan keterusterangan visual, struktur
-                        yang tegas, tipografi kuat, garis yang terlihat,
-                        dan penggunaan warna kontras.
-                    </p>
-
-                    <p>
-                        Dalam website ini, karakter tersebut diterapkan
-                        melalui komposisi yang lugas, judul berukuran
-                        besar, blok warna yang dominan, garis tebal,
-                        serta elemen antarmuka yang tidak berusaha
-                        menyembunyikan struktur desainnya.
-                    </p>
-
-                    <p>
-                        Pendekatan ini dipilih agar website memiliki
-                        karakter visual yang kuat sekaligus membedakan
-                        proyek dari desain portofolio konvensional
-                        yang cenderung minimalis dan netral.
-                    </p>
-
-                </div>
+            <div class="biography-grid">
 
 
-                <div class="design-preview">
+                <!-- ==================================================
+                     KARTU KIMI
+                     DARK BOLD BRUTALISM
+                =================================================== -->
 
-                    <div class="preview-header">
-                        <span>DESIGN SYSTEM / 01</span>
-                        <span>BRUTALISM</span>
+                <article class="biography-card kimi-card">
+
+                    <div class="biography-card-top">
+
+                        <span class="biography-index">PROFILE / 001</span>
+
+                        <span class="biography-status">
+                            DATA SCIENCE STUDENT
+                        </span>
+
                     </div>
 
-                    <div class="preview-body">
 
-                        <p>LESS DECORATION.</p>
+                    <div class="biography-photo-area">
 
-                        <h3>MORE<br>CHARACTER.</h3>
+                        <div class="kimi-photo-decoration" aria-hidden="true">
+                            <span class="kimi-decoration-text">KIMI</span>
+                            <span class="kimi-decoration-number">01</span>
+                            <span class="kimi-decoration-cross">+</span>
+                        </div>
 
-                        <div class="preview-blocks">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                        <figure class="biography-photo">
+
+                            <img
+                                src="assets/kimitpt.png"
+                                alt="Foto Kimi Thora Refolino"
+                                loading="lazy">
+
+                        </figure>
+
+                        <span class="photo-caption">
+                            FIG. 01 — KIMI THORA REFOLINO
+                        </span>
+
+                    </div>
+
+
+                    <div class="biography-card-content">
+
+                        <p class="biography-category">
+                            DARK BOLD BRUTALISM
+                        </p>
+
+                        <h3>Kimi Thora<br>Refolino.</h3>
+
+                        <p class="biography-description">
+                            Mahasiswa Sains Data yang tertarik pada
+                            pengolahan data, machine learning,
+                            natural language processing, dan penelitian
+                            ilmiah berbasis teknologi.
+                        </p>
+
+                        <div class="biography-tags">
+
+                            <span>DATA SCIENCE</span>
+                            <span>MACHINE LEARNING</span>
+                            <span>RESEARCH</span>
+
+                        </div>
+
+
+                        <div class="biography-card-footer">
+
+                            <span>PERSONAL PROFILE</span>
+
+                            <a
+                                href="template/kimi.html"
+                                class="biography-link"
+                                aria-label="Lihat biografi lengkap Kimi Thora Refolino">
+
+                                Lihat Biografi
+                                <span aria-hidden="true">↗</span>
+
+                            </a>
+
                         </div>
 
                     </div>
 
-                    <div class="preview-footer">
-                        STRUCTURE / COLOR / TYPOGRAPHY
+                </article>
+
+
+
+                <!-- ==================================================
+                     KARTU JAMES
+                     RETRO FUTURISTIK
+                =================================================== -->
+
+                <article class="biography-card james-card">
+
+                    <div class="biography-card-top">
+
+                        <span class="biography-index">PROFILE / 002</span>
+
+                        <span class="biography-status">
+                            FUTURE IN PROGRESS
+                        </span>
+
                     </div>
 
-                </div>
+
+                    <div class="biography-photo-area">
+
+                        <div class="james-photo-decoration" aria-hidden="true">
+                            <span class="james-decoration-text">FUTURE</span>
+                            <span class="james-decoration-number">02</span>
+                            <span class="james-decoration-orbit"></span>
+                        </div>
+
+                        <figure class="biography-photo">
+
+                            <img
+                                src="assets/james.jpeg"
+                                alt="Foto James Aldo Parlindungan"
+                                loading="lazy">
+
+                        </figure>
+
+                        <span class="photo-caption">
+                            FIG. 02 — JAMES ALDO PARLINDUNGAN
+                        </span>
+
+                    </div>
+
+
+                    <div class="biography-card-content">
+
+                        <p class="biography-category">
+                            RETRO FUTURISTIK
+                        </p>
+
+                        <h3>James Aldo<br>Parlindungan.</h3>
+
+                        <p class="biography-description">
+                            Mahasiswa Sains Data yang memiliki ketertarikan
+                            pada teknologi, analisis data, pemrograman,
+                            pemecahan masalah, dan pengembangan solusi
+                            berbasis data.
+                        </p>
+
+                        <div class="biography-tags">
+
+                            <span>PROGRAMMING</span>
+                            <span>DATA ANALYSIS</span>
+                            <span>TECHNOLOGY</span>
+
+                        </div>
+
+
+                        <div class="biography-card-footer">
+
+                            <span>PERSONAL PROFILE</span>
+
+                            <a
+                                href="template/james.html"
+                                class="biography-link"
+                                aria-label="Lihat biografi lengkap James Aldo Parlindungan">
+
+                                Lihat Biografi
+                                <span aria-hidden="true">↗</span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
 
             </div>
 
 
-            <!-- PALET WARNA -->
-
-            <div id="palet-warna" class="palette-section">
-
-                <h3>Palet Warna Website</h3>
+            <div class="biography-bottom-note">
 
                 <p>
-                    Palet warna dirancang untuk menciptakan
-                    identitas visual yang konsisten, tegas,
-                    dan mudah dikenali.
+                    SAME PROJECT.
+                    <strong>DIFFERENT PERSONALITIES.</strong>
+                    DIFFERENT VISUAL APPROACHES.
                 </p>
-
-
-                <div class="palette-grid">
-
-                    <article class="palette-item">
-
-                        <div
-                            class="color-swatch color-black"
-                            role="img"
-                            aria-label="Sampel warna hitam"
-                        ></div>
-
-                        <h4>BRUTAL BLACK</h4>
-
-                        <p>#111111</p>
-
-                        <p>
-                            Warna dasar untuk teks, garis,
-                            dan kontras visual.
-                        </p>
-
-                    </article>
-
-
-                    <article class="palette-item">
-
-                        <div
-                            class="color-swatch color-white"
-                            role="img"
-                            aria-label="Sampel warna putih"
-                        ></div>
-
-                        <h4>PURE WHITE</h4>
-
-                        <p>#FFFFFF</p>
-
-                        <p>
-                            Memberikan ruang visual dan
-                            menjaga keterbacaan konten.
-                        </p>
-
-                    </article>
-
-
-                    <article class="palette-item">
-
-                        <div
-                            class="color-swatch color-yellow"
-                            role="img"
-                            aria-label="Sampel warna kuning elektrik"
-                        ></div>
-
-                        <h4>ELECTRIC YELLOW</h4>
-
-                        <p>#F5FF00</p>
-
-                        <p>
-                            Warna aksen utama yang
-                            berani dan menarik perhatian.
-                        </p>
-
-                    </article>
-
-
-                    <article class="palette-item">
-
-                        <div
-                            class="color-swatch color-blue"
-                            role="img"
-                            aria-label="Sampel warna biru kobalt"
-                        ></div>
-
-                        <h4>COBALT BLUE</h4>
-
-                        <p>#244BFF</p>
-
-                        <p>
-                            Memberikan karakter teknologi
-                            dan aksen visual yang kuat.
-                        </p>
-
-                    </article>
-
-
-                    <article class="palette-item">
-
-                        <div
-                            class="color-swatch color-red"
-                            role="img"
-                            aria-label="Sampel warna merah koral"
-                        ></div>
-
-                        <h4>BRUTAL RED</h4>
-
-                        <p>#FF4B35</p>
-
-                        <p>
-                            Digunakan sebagai aksen
-                            untuk menciptakan variasi.
-                        </p>
-
-                    </article>
-
-
-                    <article class="palette-item">
-
-                        <div
-                            class="color-swatch color-gray"
-                            role="img"
-                            aria-label="Sampel warna abu-abu terang"
-                        ></div>
-
-                        <h4>CONCRETE GRAY</h4>
-
-                        <p>#E7E7E7</p>
-
-                        <p>
-                            Warna pendukung untuk
-                            membedakan kelompok konten.
-                        </p>
-
-                    </article>
-
-                </div>
 
             </div>
 
@@ -642,69 +751,173 @@
 
 
         <!-- ==================================================
-             6. HALAMAN BIOGRAFIS
-        ================================================== -->
+             05. PENJELASAN PENDEKATAN DESAIN
+        =================================================== -->
 
-        <section id="portofolio" class="section portfolio-section">
+        <section class="design-section section" id="desain">
 
             <div class="section-heading">
 
-                <p class="eyebrow">
-                    05 / MEET THE PEOPLE
-                </p>
+                <p class="section-label">05 / THE ART DIRECTION</p>
 
                 <h2>
-                    BEHIND THE<br>
-                    BIOGRAPHIES.
+                    One website.<br>
+                    <span>Multiple aesthetics.</span>
                 </h2>
 
             </div>
 
 
-            <p class="portfolio-intro">
-                Setiap orang memiliki perjalanan, pengalaman,
-                dan perspektif yang berbeda. Kenali individu
-                di balik proyek Web Biografis melalui halaman
-                profil masing-masing.
-            </p>
+            <div class="design-grid">
 
 
-            <div class="portfolio-grid">
+                <!-- DARK BOLD BRUTALISM -->
 
-                <article class="portfolio-card">
+                <article class="design-card design-card-kimi">
 
-                    <p class="portfolio-number">PROFILE / 001</p>
+                    <div class="design-card-header">
 
-                    <h3>KIMI THORA REFOLINO</h3>
+                        <span>ART DIRECTION 01</span>
+
+                        <span class="design-symbol" aria-hidden="true">■</span>
+
+                    </div>
+
+                    <h3>Dark Bold<br>Brutalism.</h3>
 
                     <p>
-                        Mahasiswa Sains Data dengan ketertarikan
-                        pada data science, machine learning,
-                        natural language processing, serta
-                        penelitian dan publikasi ilmiah.
+                        Editorial modern bernuansa digital yang berani,
+                        eksperimental, geometris, dan ekspresif. Kontras
+                        tinggi serta aksen neon menegaskan karakter tanpa
+                        mengorbankan kenyamanan membaca.
                     </p>
 
-                    <a href="template/kimi.html">
-                        LIHAT BIOGRAFI
+                    <div class="design-spec-grid">
+                        <section class="design-spec">
+                            <h4>Karakter &amp; kesan</h4>
+                            <p>
+                                Bold, nyentrik, tegas, dan unik. Bentuk
+                                geometris, judul besar, serta elemen editorial
+                                menjadi penanda visual yang ekspresif.
+                            </p>
+                        </section>
+
+                        <section class="design-spec">
+                            <h4>Palet warna</h4>
+                            <ul class="design-palette" aria-label="Palet warna Kimi">
+                                <li><span style="--swatch: #0B0B0B"></span><code>#0B0B0B</code> Hitam</li>
+                                <li><span style="--swatch: #131313"></span><code>#131313</code> Abu gelap</li>
+                                <li><span style="--swatch: #1C1C1C"></span><code>#1C1C1C</code> Permukaan</li>
+                                <li><span style="--swatch: #F4F1E8"></span><code>#F4F1E8</code> Putih gading</li>
+                                <li><span style="--swatch: #D4FF1A"></span><code>#D4FF1A</code> Neon lime</li>
+                                <li><span style="--swatch: #FF3D71"></span><code>#FF3D71</code> Bright pink</li>
+                            </ul>
+                        </section>
+
+                        <section class="design-spec">
+                            <h4>Tipografi</h4>
+                            <p>
+                                <strong>Archivo Black</strong> untuk heading,
+                                <strong>Space Grotesk</strong> untuk isi, dan
+                                <strong>Space Mono</strong> untuk metadata.
+                                Judul serta label kapital membangun hierarki
+                                yang tegas.
+                            </p>
+                        </section>
+
+                        <section class="design-spec">
+                            <h4>Layout &amp; komposisi</h4>
+                            <p>
+                                Editorial grid asimetris, ruang kosong yang
+                                seimbang dengan elemen padat, dan sidebar tetap
+                                di desktop. Nomor bagian, label kecil, serta
+                                dekorasi menjaga identitas di semua ukuran layar.
+                            </p>
+                        </section>
+                    </div>
+
+                    <a href="template/kimi.html" class="text-link">
+                        Lihat penerapannya →
                     </a>
 
                 </article>
 
 
-                <article class="portfolio-card">
 
-                    <p class="portfolio-number">PROFILE / 002</p>
+                <!-- RETRO FUTURISTIK -->
 
-                    <h3>JAMES ALDO PARLINDUNGAN</h3>
+                <article class="design-card design-card-james">
+
+                    <div class="design-card-header">
+
+                        <span>ART DIRECTION 02</span>
+
+                        <span class="design-symbol" aria-hidden="true">✳</span>
+
+                    </div>
+
+                    <h3>Retro<br>Futuristik.</h3>
 
                     <p>
-                        Kenali profil, latar belakang pendidikan,
-                        minat, dan perjalanan akademik James
-                        melalui halaman biografi pribadinya.
+                        Antarmuka teknologi siber yang memadukan imajinasi
+                        masa depan, nuansa retro, dan atmosfer digital.
+                        Cahaya neon, garis geometris, serta gradien menjadi
+                        aksen pada pengalaman yang terstruktur dan modern.
                     </p>
 
-                    <a href="template/james.html">
-                        LIHAT BIOGRAFI
+                    <div class="design-spec-grid">
+                        <section class="design-spec">
+                            <h4>Karakter &amp; kesan</h4>
+                            <p>
+                                Futuristik, digital, neon, dan eksperimental;
+                                terasa seperti dashboard masa depan yang tetap
+                                mudah dipindai dan nyaman digunakan.
+                            </p>
+                        </section>
+
+                        <section class="design-spec">
+                            <h4>Palet warna</h4>
+                            <ul class="design-palette" aria-label="Palet warna James">
+                                <li><span style="--swatch: #0A0A0F"></span><code>#0A0A0F</code> Midnight black</li>
+                                <li><span style="--swatch: #12121A"></span><code>#12121A</code> Dark navy</li>
+                                <li><span style="--swatch: #1A1A2E"></span><code>#1A1A2E</code> Deep indigo</li>
+                                <li><span style="--swatch: #E8E8F0"></span><code>#E8E8F0</code> Soft white</li>
+                                <li><span style="--swatch: #A0A0B8"></span><code>#A0A0B8</code> Abu-abu</li>
+                                <li><span style="--swatch: #6A6A80"></span><code>#6A6A80</code> Muted gray</li>
+                                <li><span style="--swatch: #00F0FF"></span><code>#00F0FF</code> Neon cyan</li>
+                                <li><span style="--swatch: #FF2D78"></span><code>#FF2D78</code> Neon pink</li>
+                                <li><span style="--swatch: #A855F7"></span><code>#A855F7</code> Neon purple</li>
+                                <li><span style="--swatch: #F0FF00"></span><code>#F0FF00</code> Neon yellow</li>
+                                <li><span style="--swatch: #FF6B35"></span><code>#FF6B35</code> Neon orange</li>
+                            </ul>
+                        </section>
+
+                        <section class="design-spec">
+                            <h4>Tipografi</h4>
+                            <p>
+                                <strong>Orbitron</strong> untuk heading,
+                                <strong>Rajdhani</strong> untuk isi, dan
+                                <strong>JetBrains Mono</strong> untuk metadata
+                                serta kode. Judul kapital dengan jarak huruf
+                                lebar memperkuat nuansa antarmuka digital.
+                            </p>
+                        </section>
+
+                        <section class="design-spec">
+                            <h4>Layout &amp; komposisi</h4>
+                            <p>
+                                Header tetap dengan transparansi dan blur,
+                                konten terpusat dengan lebar maksimal, serta
+                                grid kartu untuk fokus keahlian dan informasi.
+                                Bagian profil menjadi pusat perhatian; tata
+                                letak tetap responsif. Cahaya neon dan gradien
+                                menonjolkan elemen penting.
+                            </p>
+                        </section>
+                    </div>
+
+                    <a href="template/james.html" class="text-link">
+                        Lihat penerapannya →
                     </a>
 
                 </article>
@@ -712,181 +925,388 @@
             </div>
 
 
-            <p class="portfolio-note">
-                Pilih profil untuk melihat halaman biografi
-                masing-masing individu.
-            </p>
+            <aside class="design-note">
+
+                <h3>Bagaimana dengan preferensi tampilan?</h3>
+
+                <p>
+                    Pengaturan tema global pada halaman utama dapat mengubah
+                    tampilan terang atau gelap tanpa menghilangkan identitas
+                    Dark Bold Brutalism pada halaman Kimi maupun Retro
+                    Futuristik pada halaman James.
+                </p>
+
+                <p>
+                    Dengan demikian, preferensi pengguna dan identitas visual
+                    khusus setiap halaman tetap dapat berjalan berdampingan.
+                </p>
+
+            </aside>
 
         </section>
 
 
         <!-- ==================================================
-             7. PENGATURAN WEBSITE
-        ================================================== -->
+             06. PENGATURAN PREFERENSI PENGGUNA
+        =================================================== -->
 
-        <section id="pengaturan" class="section settings-section">
+        <section class="preferences-section section" id="preferensi">
 
             <div class="section-heading">
 
-                <p class="eyebrow">
-                    06 / USER PREFERENCES
-                </p>
+                <p class="section-label">06 / YOUR EXPERIENCE</p>
 
                 <h2>
-                    YOUR WEB.<br>
-                    YOUR SETTINGS.
+                    Make it<br>
+                    <span>comfortable.</span>
                 </h2>
+
+                <p class="section-introduction">
+                    Sesuaikan pengalaman membaca dan interaksi website
+                    berdasarkan preferensi Anda.
+                </p>
 
             </div>
 
 
-            <p class="settings-intro">
-                Setiap pengguna dapat memiliki preferensi tampilan
-                yang berbeda. Bagian ini disiapkan sebagai tempat
-                pengaturan pengalaman menjelajahi website.
-            </p>
+            <div class="preferences-layout">
 
 
-            <div class="settings-panel">
+                <!-- PENJELASAN PREFERENSI -->
 
-                <!-- PENGATURAN TEMA -->
+                <div class="preferences-information">
 
-                <div class="setting-item">
+                    <span class="preferences-icon" aria-hidden="true">⚙</span>
 
-                    <div class="setting-description">
+                    <h3>Preferensi Tampilan</h3>
 
-                        <h3>Tema Tampilan</h3>
+                    <p>
+                        Setiap pengguna memiliki kenyamanan visual yang
+                        berbeda. Pengaturan ini dirancang agar pengguna
+                        dapat menyesuaikan tampilan tanpa harus mengubah
+                        struktur konten website.
+                    </p>
+
+                    <div class="preferences-information-note">
+
+                        <span aria-hidden="true">✦</span>
 
                         <p>
-                            Pilih tampilan yang paling nyaman
-                            untuk menjelajahi website.
+                            Pengaturan disimpan sesuai pilihan pengguna
+                            dan dapat dikembalikan ke pengaturan awal
+                            kapan saja.
                         </p>
 
                     </div>
 
-                    <div class="setting-control">
-
-                        <label for="theme-select">
-                            Pilih tema
-                        </label>
-
-                        <select id="theme-select" name="theme">
-                            <option value="brutalist">
-                                Brutalist Original
-                            </option>
-
-                            <option value="light">
-                                Light Mode
-                            </option>
-
-                            <option value="dark">
-                                Dark Mode
-                            </option>
-                        </select>
-
-                    </div>
-
                 </div>
 
 
-                <!-- PENGATURAN UKURAN TEKS -->
 
-                <div class="setting-item">
+                <!-- FORM PREFERENSI -->
 
-                    <div class="setting-description">
+                <form class="preferences-form" id="preferences-form">
 
-                        <h3>Ukuran Teks</h3>
+                    <div class="preferences-form-header">
 
-                        <p>
-                            Sesuaikan ukuran teks untuk
-                            meningkatkan kenyamanan membaca.
+                        <h3>Customize Your View</h3>
+
+                        <span class="settings-version">SETTINGS / 01</span>
+
+                    </div>
+
+
+                    <!-- TEMA TAMPILAN -->
+
+                    <fieldset class="preference-group">
+
+                        <legend>
+                            <span class="preference-number">01</span>
+                            Tema Tampilan
+                        </legend>
+
+                        <p class="preference-description">
+                            Pilih tema yang paling nyaman untuk Anda.
                         </p>
 
-                    </div>
+                        <div class="theme-options">
 
-                    <div class="setting-control">
+                            <label class="theme-option">
 
-                        <label for="font-size-select">
-                            Pilih ukuran teks
-                        </label>
+                                <input
+                                    type="radio"
+                                    name="theme"
+                                    value="light">
 
-                        <select id="font-size-select" name="font-size">
+                                <span class="theme-option-content">
 
-                            <option value="normal">
-                                Normal
-                            </option>
+                                    <span
+                                        class="theme-preview theme-preview-light"
+                                        aria-hidden="true">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </span>
 
-                            <option value="large">
-                                Besar
-                            </option>
+                                    <span class="theme-option-label">
+                                        Light
+                                    </span>
 
-                            <option value="extra-large">
-                                Sangat Besar
-                            </option>
+                                </span>
 
-                        </select>
-
-                    </div>
-
-                </div>
+                            </label>
 
 
-                <!-- PENGATURAN ANIMASI -->
+                            <label class="theme-option">
 
-                <div class="setting-item">
+                                <input
+                                    type="radio"
+                                    name="theme"
+                                    value="dark"
+                                    checked>
 
-                    <div class="setting-description">
+                                <span class="theme-option-content">
 
-                        <h3>Animasi</h3>
+                                    <span
+                                        class="theme-preview theme-preview-dark"
+                                        aria-hidden="true">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </span>
 
-                        <p>
-                            Tentukan preferensi animasi pada
-                            elemen interaktif website.
+                                    <span class="theme-option-label">
+                                        Dark
+                                    </span>
+
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                        <small class="preference-helper">
+                            Perubahan tema berlaku pada tampilan global
+                            dan tidak mengganti identitas desain khusus
+                            halaman biografi.
+                        </small>
+
+                    </fieldset>
+
+
+
+                    <!-- UKURAN TEKS -->
+
+                    <fieldset class="preference-group">
+
+                        <legend>
+                            <span class="preference-number">02</span>
+                            Ukuran Teks
+                        </legend>
+
+                        <p class="preference-description">
+                            Sesuaikan ukuran tulisan untuk kenyamanan membaca.
                         </p>
 
+                        <div class="text-size-options">
+
+                            <label class="text-size-option">
+
+                                <input
+                                    type="radio"
+                                    name="text-size"
+                                    value="small">
+
+                                <span class="text-size-preview text-size-small">
+                                    Aa
+                                </span>
+
+                                <span>Kecil</span>
+
+                            </label>
+
+
+                            <label class="text-size-option">
+
+                                <input
+                                    type="radio"
+                                    name="text-size"
+                                    value="medium"
+                                    checked>
+
+                                <span class="text-size-preview text-size-medium">
+                                    Aa
+                                </span>
+
+                                <span>Sedang</span>
+
+                            </label>
+
+
+                            <label class="text-size-option">
+
+                                <input
+                                    type="radio"
+                                    name="text-size"
+                                    value="large">
+
+                                <span class="text-size-preview text-size-large">
+                                    Aa
+                                </span>
+
+                                <span>Besar</span>
+
+                            </label>
+
+                        </div>
+
+                    </fieldset>
+
+
+
+                    <!-- ANIMASI -->
+
+                    <fieldset class="preference-group">
+
+                        <legend>
+                            <span class="preference-number">03</span>
+                            Animasi
+                        </legend>
+
+                        <p class="preference-description">
+                            Atur intensitas animasi pada elemen interaktif.
+                        </p>
+
+                        <div class="animation-options">
+
+                            <label class="animation-option">
+
+                                <input
+                                    type="radio"
+                                    name="animation"
+                                    value="active"
+                                    checked>
+
+                                <span class="animation-option-content">
+
+                                    <span
+                                        class="animation-option-symbol"
+                                        aria-hidden="true">✦</span>
+
+                                    <span class="animation-option-label">
+                                        Aktif
+                                    </span>
+
+                                    <small>
+                                        Animasi normal
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="animation-option">
+
+                                <input
+                                    type="radio"
+                                    name="animation"
+                                    value="reduced">
+
+                                <span class="animation-option-content">
+
+                                    <span
+                                        class="animation-option-symbol"
+                                        aria-hidden="true">◌</span>
+
+                                    <span class="animation-option-label">
+                                        Dikurangi
+                                    </span>
+
+                                    <small>
+                                        Gerakan minimal
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+                            <label class="animation-option">
+
+                                <input
+                                    type="radio"
+                                    name="animation"
+                                    value="inactive">
+
+                                <span class="animation-option-content">
+
+                                    <span
+                                        class="animation-option-symbol"
+                                        aria-hidden="true">■</span>
+
+                                    <span class="animation-option-label">
+                                        Nonaktif
+                                    </span>
+
+                                    <small>
+                                        Tanpa animasi
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </fieldset>
+
+
+
+                    <!-- STATUS PENGATURAN -->
+
+                    <div
+                        class="preferences-status"
+                        id="preferences-status"
+                        role="status"
+                        aria-live="polite">
+
+                        Pengaturan belum diubah.
+
                     </div>
 
-                    <div class="setting-control">
 
-                        <label for="animation-select">
-                            Preferensi animasi
-                        </label>
 
-                        <select id="animation-select" name="animation">
+                    <!-- TOMBOL PREFERENSI -->
 
-                            <option value="enabled">
-                                Aktif
-                            </option>
+                    <div class="preferences-actions">
 
-                            <option value="reduced">
-                                Dikurangi
-                            </option>
+                        <button
+                            type="submit"
+                            class="button button-save"
+                            id="save-preferences">
 
-                        </select>
+                            Simpan Pengaturan
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="button button-reset"
+                            id="reset-preferences">
+
+                            Atur Ulang
+
+                        </button>
 
                     </div>
 
-                </div>
 
+                    <p class="preferences-footer-note">
+                        Pengaturan akan diterapkan setelah disimpan.
+                    </p>
 
-                <!-- TOMBOL SIMPAN -->
-
-                <div class="settings-actions">
-
-                    <button type="button" id="save-settings">
-                        SIMPAN PENGATURAN
-                    </button>
-
-                    <button type="button" id="reset-settings">
-                        ATUR ULANG
-                    </button>
-
-                </div>
-
-
-                <p id="settings-status" role="status" aria-live="polite">
-                    Pengaturan siap disesuaikan.
-                </p>
+                </form>
 
             </div>
 
@@ -894,50 +1314,74 @@
 
 
         <!-- ==================================================
-             8. PENUTUP
-        ================================================== -->
+             07. PENUTUP / CALL TO ACTION
+        =================================================== -->
 
-        <section id="penutup" class="closing-section">
+        <section class="closing-section section" id="penutup">
 
-            <p class="eyebrow">
-                END OF INTRODUCTION
-            </p>
+            <div class="closing-content">
 
-            <h2>
-                EVERY STORY<br>
-                DESERVES A SPACE.
-            </h2>
+                <p class="section-label">
+                    END OF INTRODUCTION / BEGIN YOUR EXPLORATION
+                </p>
 
-            <p>
-                Sebuah proyek pembelajaran, sebuah identitas digital,
-                dan sebuah langkah awal untuk memahami bagaimana
-                teknologi dapat menyampaikan cerita.
-            </p>
+                <h2>
+                    Every person<br>
+                    has a <span>story.</span>
+                </h2>
 
-            <a href="#beranda">
-                KEMBALI KE ATAS
-            </a>
+                <p>
+                    Jelajahi lebih jauh perjalanan, pengalaman, minat,
+                    dan identitas dari masing-masing individu melalui
+                    halaman biografi mereka.
+                </p>
+
+                <div class="closing-actions">
+
+                    <a href="../template/kimi.html" class="button button-kimi">
+                        Biografi Kimi ↗
+                    </a>
+
+                    <a href="../template/james.html" class="button button-james">
+                        Biografi James ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="closing-decoration" aria-hidden="true">
+                <span>THE END?</span>
+                <span>NO. THE BEGINNING.</span>
+            </div>
 
         </section>
 
     </main>
 
 
+
     <!-- ==================================================
          FOOTER
-    ================================================== -->
+    =================================================== -->
 
-    <footer id="footer">
+    <footer class="site-footer">
 
         <div class="footer-main">
 
             <div class="footer-brand">
 
-                <h2>WEB BIOGRAFIS.</h2>
+                <a href="#beranda" class="logo footer-logo">
+
+                    <span class="logo-symbol">W/B</span>
+
+                    <span class="logo-text">WEB BIOGRAFI</span>
+
+                </a>
 
                 <p>
-                    Proyek pembelajaran pengembangan web
-                    dalam mata kuliah Pemrograman.
+                    Sebuah proyek pembelajaran pengembangan website
+                    dalam mata kuliah Pemrograman I.
                 </p>
 
             </div>
@@ -945,35 +1389,26 @@
 
             <div class="footer-navigation">
 
-                <h3>NAVIGASI</h3>
+                <h3>Eksplorasi</h3>
 
                 <ul>
-                    <li><a href="#tentang">Tentang Website</a></li>
-                    <li><a href="#pembelajaran">Pembelajaran</a></li>
+                    <li><a href="#tentang">Pemrograman I</a></li>
+                    <li><a href="#proyek">Web Biografi</a></li>
                     <li><a href="#teknologi">Teknologi</a></li>
-                    <li><a href="#desain">Konsep Desain</a></li>
-                    <li><a href="#pengaturan">Pengaturan</a></li>
+                    <li><a href="#desain">Pendekatan Desain</a></li>
                 </ul>
 
             </div>
 
 
-            <div class="footer-profiles">
+            <div class="footer-navigation">
 
-                <h3>PROFIL</h3>
+                <h3>Biografi</h3>
 
                 <ul>
-                    <li>
-                        <a href="template/kimi.html">
-                            Kimi Thora Refolino
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="template/james.html">
-                            James Aldo Parlindungan
-                        </a>
-                    </li>
+                    <li><a href="../template/kimi.html">Kimi Thora Refolino</a></li>
+                    <li><a href="../template/james.html">James Aldo Parlindungan</a></li>
+                    <li><a href="#preferensi">Preferensi Tampilan</a></li>
                 </ul>
 
             </div>
@@ -984,20 +1419,26 @@
         <div class="footer-bottom">
 
             <p>
-                &copy; 2026 WEB BIOGRAFIS.
-                Dibuat sebagai proyek pembelajaran Pemrograman.
+                &copy; <span id="current-year">2026</span>
+                Web Biografi — Pemrograman I.
             </p>
 
             <p>
-                HTML5 / CSS / JAVASCRIPT
+                BUILT WITH HTML5, CSS3 & JAVASCRIPT.
             </p>
+
+            <a href="#beranda" class="back-to-top">
+                Kembali ke Atas ↑
+            </a>
 
         </div>
 
     </footer>
 
 
-    <script src="script/profile-dropdown.js" defer></script>
+
+    <!-- JavaScript akan ditambahkan pada tahap berikutnya -->
+    <script src="../script/main.js"></script>
 
 </body>
 
